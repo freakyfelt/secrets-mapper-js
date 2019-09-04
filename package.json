@@ -18,6 +18,12 @@
     "test": "jest"
   },
   "dependencies": {
+    "@fatlama/secrets-fetcher": "^1.2.0",
+    "@types/minimist": "^1.2.0",
+    "@types/node": "^12.7.1",
+    "@types/shell-escape": "^0.2.0",
+    "minimist": "^1.2.0",
+    "shell-escape": "^0.2.0"
   },
   "devDependencies": {
     "@fatlama/eslint-config-base": "^1.1.0",
