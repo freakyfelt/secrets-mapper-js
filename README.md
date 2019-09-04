@@ -20,6 +20,10 @@ file stored in the package root (`$PKGROOT`).
 }
 ```
 
+## Migrating from secrets-manager.js
+
+* All secrets must be prefixed with `sm:aws:` instead of `aws:` just to namespace ourselves
+
 ## Using the Command Line
 
 The `secrets-mapper` command line script provides a quick way to map a JSON or
