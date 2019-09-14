@@ -19,9 +19,6 @@
   },
   "dependencies": {
     "@fatlama/secrets-fetcher": "^1.2.0",
-    "@types/minimist": "^1.2.0",
-    "@types/node": "^12.7.1",
-    "@types/shell-escape": "^0.2.0",
     "minimist": "^1.2.0",
     "shell-escape": "^0.2.0"
   },
@@ -29,6 +26,9 @@
     "@fatlama/eslint-config-base": "^1.1.0",
     "@fatlama/eslint-config-typescript": "^1.1.0",
     "@types/jest": "^24.0.13",
+    "@types/minimist": "^1.2.0",
+    "@types/node": "^12.7.1",
+    "@types/shell-escape": "^0.2.0",
     "@typescript-eslint/eslint-plugin": "^1.9.0",
     "@typescript-eslint/parser": "^1.9.0",
     "codecov": "^3.5.0",
