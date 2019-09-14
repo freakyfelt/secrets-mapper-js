@@ -1,17 +1,17 @@
 import { AWSSecretsClient, SecretsClient } from '@fatlama/secrets-fetcher'
+import { InvalidSecretScheme, MappingExceptions, ValueNotFound } from './errors'
 import { MappingInput, MappingOutput } from './types'
-import { ValueNotFound, InvalidSecretScheme } from './errors'
 
 type Logger = Pick<Console, 'error' | 'warn'>
 
-// e.g. 'sm:aws:/path/to/secret'
+/** @example 'sm:aws:/path/to/secret' */
 const AWS_RAW_SCHEME_RE = /^sm:aws:([^@]+)$/
-// e.g. 'sm:aws:json:/path/to/secret'
+/** @example 'sm:aws:json:/path/to/secret' */
 const AWS_JSON_SCHEME_RE = /^sm:aws:json:([^@]+)$/
-// e.g. 'sm:aws:username@/path/to/secret'
+/** @example `sm:aws:username@/path/to/secret` */
 const AWS_KEYVALUE_SCHEME_RE = /^sm:aws:(.*)@(.*)$/
 
-interface SecretsMapperOpts {
+interface SecretsMapperOptions {
   logger?: Logger
   awsFetcher?: SecretsClient
 }
@@ -38,7 +38,7 @@ export class SecretsMapper {
   private awsFetcher: SecretsClient
   private logger: Logger
 
-  constructor(opts: SecretsMapperOpts = {}) {
+  constructor(opts: SecretsMapperOptions = {}) {
     this.awsFetcher = opts.awsFetcher || new AWSSecretsClient()
     this.logger = opts.logger || console
   }
@@ -59,7 +59,7 @@ export class SecretsMapper {
     if (Object.keys(errors).length > 0) {
       this.logger.error('Found the following errors:', errors)
 
-      throw new Error('Could not decode all secrets')
+      throw new MappingExceptions(errors)
     }
 
     return rval

@@ -11,3 +11,14 @@ export class InvalidSecretScheme extends Error {
     this.name = 'InvalidSecretScheme'
   }
 }
+
+/* eslint-disable @typescript-eslint/no-explicit-any */
+export class MappingExceptions extends Error {
+  public readonly errors: Record<string, any>
+
+  constructor(errors: Record<string, any>) {
+    super('Could not map all secrets')
+    this.errors = errors
+  }
+}
+/* eslint-enable @typescript-eslint/no-explicit-any */
