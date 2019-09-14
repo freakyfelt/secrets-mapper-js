@@ -1,7 +1,7 @@
 import parseArgs from 'minimist'
 import { formatOutput, TargetFormat } from './formatter'
 import { SecretsMapper } from './secrets-mapper'
-import { MappingOutput, NestedMappingInput } from './types'
+import { MappingOutput, NestedMappingInput, MappingInput } from './types'
 import * as util from './util'
 
 interface ParsedArguments {
@@ -111,8 +111,8 @@ export class CLI {
     return Promise.all(fileNames.map((f): Promise<NestedMappingInput> => util.readJSON(f)))
   }
 
-  private mergeInputs(inputs: NestedMappingInput[], args: ParsedArguments): MappingOutput {
-    const merged = inputs.reduce<MappingOutput>((acc, current): MappingOutput => {
+  private mergeInputs(inputs: NestedMappingInput[], args: ParsedArguments): MappingInput {
+    const merged = inputs.reduce<MappingInput>((acc, current): MappingInput => {
       return this.mergeInput(acc, current, args)
     }, {})
 
@@ -120,16 +120,16 @@ export class CLI {
   }
 
   private mergeInput(
-    base: MappingOutput,
+    base: MappingInput,
     input: NestedMappingInput,
     args: ParsedArguments
-  ): MappingOutput {
+  ): MappingInput {
     let obj = input
 
     if (args.env && obj[args.env]) {
       // detected that an environment (e.g. 'production') was provided
       // and that this input object has that key. Filter down to that key
-      obj = obj[args.env] as MappingOutput
+      obj = obj[args.env] as MappingInput
     }
 
     // Provide some sanity by checking for arrays or nested objects as we are
@@ -139,10 +139,10 @@ export class CLI {
       throw new Error(`invalid values for keys: ${invalid}`)
     }
 
-    return { ...base, ...(obj as MappingOutput) }
+    return { ...base, ...(obj as MappingInput) }
   }
 
-  private async mapSecrets(input: MappingOutput, args: ParsedArguments): Promise<MappingOutput> {
+  private async mapSecrets(input: MappingInput, args: ParsedArguments): Promise<MappingOutput> {
     const opts = {
       strict: args.strict
     }
