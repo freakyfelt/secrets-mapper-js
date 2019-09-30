@@ -5,3 +5,4 @@ coverage/
 tsconfig.tsbuildinfo
 .eslintcache
 .vscode
+/test-DELETE.json
