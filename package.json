@@ -6,7 +6,11 @@
   "repository": "github.com/fatlama/secrets-mapper-js",
   "author": "Fat Llama",
   "license": "UNLICENSED",
+  "bin": {
+    "secrets-mapper": "./bin/secrets-mapper"
+  },
   "files": [
+    "bin/secrets-mapper",
     "dist/**/*"
   ],
   "scripts": {
