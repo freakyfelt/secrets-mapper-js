@@ -5,7 +5,7 @@
   "types": "dist/index.d.ts",
   "repository": "github.com/fatlama/secrets-mapper-js",
   "author": "Fat Llama",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "files": [
     "dist/**/*"
   ],
