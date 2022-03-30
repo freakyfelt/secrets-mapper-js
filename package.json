@@ -24,7 +24,7 @@
   },
   "dependencies": {
     "@fatlama/secrets-fetcher": "^1.2.0",
-    "minimist": "^1.2.0",
+    "minimist": "^1.2.6",
     "shell-escape": "^0.2.0"
   },
   "devDependencies": {
