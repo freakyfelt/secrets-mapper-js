@@ -113,8 +113,8 @@ describe('CLI', () => {
   })
 
   it('merges two valid, single-level files', async () => {
-    const input1 = await readJSON(fnames.good)
-    const input2 = await readJSON(fnames.good1)
+    const input1 = await readJSON<any>(fnames.good)
+    const input2 = await readJSON<any>(fnames.good1)
 
     const expectedInput = { ...input1, ...input2 }
 
